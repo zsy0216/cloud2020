@@ -8,7 +8,7 @@
     </resultMap>
     
     <insert id="create" parameterType="org.example.entity.Payment" useGeneratedKeys="true" keyProperty="id">
-        insert into payment(serial) values(#{serial}
+        insert into payment(serial) values(#{serial})
     </insert>
     
     <select id="getPaymentById" parameterType="Long" resultMap="BaseResultMap">
