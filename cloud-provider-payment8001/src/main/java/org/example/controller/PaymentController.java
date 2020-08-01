@@ -4,10 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.common.CommonResult;
 import org.example.entity.Payment;
 import org.example.service.PaymentService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -16,7 +13,8 @@ import javax.annotation.Resource;
  * @description
  * @date 2020/08/01
  */
-@RestController("/payment")
+@RestController
+@RequestMapping("/payment")
 @Slf4j
 public class PaymentController {
 
@@ -24,7 +22,7 @@ public class PaymentController {
 	PaymentService paymentService;
 
 	@PostMapping("/create")
-	public CommonResult create(Payment payment) {
+	public CommonResult<Integer> create(Payment payment) {
 		int result = paymentService.create(payment);
 		log.info("插入结果: {}", result);
 		if (result > 0) {
@@ -35,7 +33,7 @@ public class PaymentController {
 	}
 
 	@GetMapping("/get/{id}")
-	public CommonResult getPaymentById(@PathVariable("id") Long id) {
+	public CommonResult<Payment> getPaymentById(@PathVariable("id") Long id) {
 		Payment payment = paymentService.getPaymentById(id);
 		log.info("查询结果: {}", payment);
 		if (payment != null) {
