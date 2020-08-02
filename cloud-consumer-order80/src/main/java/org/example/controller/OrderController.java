@@ -3,6 +3,7 @@ package org.example.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.example.common.CommonResult;
 import org.example.entity.Payment;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +21,7 @@ import javax.annotation.Resource;
 @RestController
 @Slf4j
 public class OrderController {
-	private static final String PAYMENT_URL = "http://localhost:8001";
+	private static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";
 
 	@Resource
 	private RestTemplate restTemplate;
