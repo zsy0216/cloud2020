@@ -5,9 +5,12 @@ import org.example.common.CommonResult;
 import org.example.entity.Payment;
 import org.example.service.PaymentService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author shuaiyin.zhang
@@ -24,6 +27,9 @@ public class PaymentController {
 
 	@Value("${server.port}")
 	String serverPort;
+
+	@Resource
+	DiscoveryClient discoveryClient;
 
 	@PostMapping("/create")
 	public CommonResult<Integer> create(@RequestBody Payment payment) {
@@ -45,5 +51,20 @@ public class PaymentController {
 		} else {
 			return new CommonResult(444, "没有对应记录, 查询 id: " + id);
 		}
+	}
+
+	@GetMapping("/discovery")
+	public Object discovery() {
+		List<String> services = discoveryClient.getServices();
+		for (String service : services) {
+			log.info("service: {}", service);
+		}
+
+		List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
+		for (ServiceInstance instance : instances) {
+			log.info(instance.getServiceId() + "\t" + instance.getHost() + "\t" + instance.getPort() + "\t" + instance.getUri());
+		}
+
+		return this.discoveryClient;
 	}
 }
