@@ -18,11 +18,15 @@ eureka:
     # 是否从 Eureka Server 抓取已有的注册信息 默认为 true
     fetchRegistry: true
     service-url:
-      # defaultZone: http://localhost:7001/eureka
-      defaultZone: http://eureka7001.com:7001/eureka, http://eureka7002.com:7002/eureka # 集群版
+      defaultZone: http://localhost:7001/eureka  # 单机版
+      #defaultZone: http://eureka7001.com:7001/eureka, http://eureka7002.com:7002/eureka # 集群版
   instance:
     instance-id: payment8001 # Eureka 页面 instance status 显示
     prefer-ip-address: true # 访问路径可以显示 IP
+    # Eureka 客户端向服务端发送心跳的时间间隔 默认30秒
+    lease-renewal-interval-in-seconds: 1
+    # Eureka 服务端在收到最后一次心跳后等待时间上限 默认90秒 (非保护模式)超时剔除服务
+    lease-expiration-duration-in-seconds: 2
 
 mybatis:
   mapperLocations: classpath:mapper/*.xml
