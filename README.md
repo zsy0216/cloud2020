@@ -12,5 +12,13 @@
 127.0.0.1 eureka7002.com
 ```
 
-#### 安装 Zookeeper
+#### 安装 Zookeeper 注册中心
 [Linux 环境安装 Zookeeper](https://blog.csdn.net/Ep_Little_prince/article/details/102628696)
+
+#### 安装 Consul 注册中心
+文件夹 `source-files` 解压
+```shell script
+# 双击 .exe 文件启动
+consul agent -dev
+```
+
