@@ -11,3 +11,6 @@
 127.0.0.1 eureka7001.com
 127.0.0.1 eureka7002.com
 ```
+
+#### 安装 Zookeeper
+[Linux 环境安装 Zookeeper](https://blog.csdn.net/Ep_Little_prince/article/details/102628696)
