@@ -3,7 +3,9 @@ package org.example.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.example.common.CommonResult;
 import org.example.entity.Payment;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.example.lb.LoadBalancer;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
+import java.net.URI;
+import java.util.List;
 
 /**
  * @author shuaiyin.zhang
@@ -22,10 +26,17 @@ import javax.annotation.Resource;
 @RestController
 @Slf4j
 public class OrderController {
+	//private static final String PAYMENT_URL = "http://localhost:8001";
 	private static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";
 
 	@Resource
 	private RestTemplate restTemplate;
+
+	@Resource
+	private LoadBalancer loadBalancer;
+
+	@Resource
+	private DiscoveryClient discoveryClient;
 
 	@GetMapping("/payment/create")
 	public CommonResult<Payment> create(Payment payment) {
@@ -60,5 +71,16 @@ public class OrderController {
 	@GetMapping("/payment/createForEntity")
 	public CommonResult createForEntity(Payment payment) {
 		return restTemplate.postForEntity(PAYMENT_URL + "/payment/create", payment, CommonResult.class).getBody();
+	}
+
+	@GetMapping(value = "/payment/lb")
+	public String getPaymentLB() {
+		List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
+		if (instances == null || instances.isEmpty()) {
+			return null;
+		}
+		ServiceInstance serviceInstance = loadBalancer.instances(instances);
+		URI uri = serviceInstance.getUri();
+		return restTemplate.getForObject(uri + "/payment/lb", String.class);
 	}
 }
