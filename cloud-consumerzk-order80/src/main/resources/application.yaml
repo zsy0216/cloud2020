@@ -6,4 +6,4 @@ spring:
     name: cloud-consumer-order
   cloud:
     zookeeper:
-      connect-string: 192.168.136.140:2181
+      connect-string: 127.0.0.1:2181

@@ -23,7 +23,6 @@ public class OrderZKController {
 
 	@GetMapping("/consumer/payment/zk")
 	public String paymentInfo() {
-		String result = restTemplate.getForObject(INVOKE_URL + "/payment/zk", String.class);
-		return result;
+		return restTemplate.getForObject(INVOKE_URL + "/payment/zk", String.class);
 	}
 }
