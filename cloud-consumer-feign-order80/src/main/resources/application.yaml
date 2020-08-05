@@ -14,3 +14,8 @@ ribbon:
   ReadTimeout:  5000
   # 值得是建立连接后从服务器读取到可用资源所用的时间
   ConnectTimeout: 5000
+
+logging:
+  level:
+    # feign 日志定义打印级别及监控接口
+    org.example.service.PaymentFeignService: debug
