@@ -1,0 +1,18 @@
+server:
+  port: 8001
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      #设置与eureka server交互的地址查询服务和注册服务都需要依赖这个地址
+      # defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+      defaultZone: http://eureka7001.com:7001/eureka/
+#  server:
+#    enable-self-preservation: false
+
+spring:
+  application:
+    name: cloud-provider-hystrix-payment
+#    eviction-interval-timer-in-ms: 2000
