@@ -1,5 +1,7 @@
 package org.example.service;
 
+import org.springframework.web.bind.annotation.PathVariable;
+
 /**
  * @author shuaiyin.zhang
  * @description
@@ -22,4 +24,12 @@ public interface PaymentService {
 	 * @return
 	 */
 	String paymentInfo_TimeOut(Integer id);
+
+	/**
+	 * 服务熔断
+	 *
+	 * @param id
+	 * @return
+	 */
+	String paymentCircuitBreaker(Integer id);
 }
