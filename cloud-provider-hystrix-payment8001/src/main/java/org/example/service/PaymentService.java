@@ -16,7 +16,7 @@ public interface PaymentService {
 	String paymentInfo_OK(Integer id);
 
 	/**
-	 * 失败
+	 * 超时访问 演示降级
 	 *
 	 * @param id
 	 * @return
