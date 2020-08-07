@@ -1,5 +1,7 @@
 package org.example.controller;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import lombok.extern.slf4j.Slf4j;
 import org.example.service.PaymentHystrixService;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,11 +33,22 @@ public class OrderHystrixController {
 		return result;
 	}
 
+	@HystrixCommand(fallbackMethod = "paymentTimeOutFallbackMethod", commandProperties = {
+			@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1500")
+			//3秒钟以内就是正常的业务逻辑
+	})
 	@GetMapping("/consumer/payment/hystrix/timeout/{id}")
 	public String paymentInfo_TimeOut(@PathVariable("id") Integer id) {
+		//int a = 10 / 0;
 		String result = paymentHystrixService.paymentInfo_TimeOut(id);
 		log.info("result: {}, serverPort: {}", result, serverPort);
 		return result;
 	}
+
+	public String paymentTimeOutFallbackMethod(@PathVariable("id") Integer id) {
+		return "我是消费者80，8001系统繁忙请10秒钟后再试或者自己运行出错请检查自己, o(╥﹏╥)o";
+	}
+
+
 
 }

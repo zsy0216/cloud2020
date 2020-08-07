@@ -21,13 +21,13 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@HystrixCommand(fallbackMethod = "paymentInfo_TimeOutHandler", commandProperties = {
-			@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")
+			@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")
 			// 3秒钟以内就是正常的业务逻辑
 	})
 	@Override
 	public String paymentInfo_TimeOut(Integer id) {
-		int a = 10 / 0;
-		long timeNumber = 5;
+		//int a = 10 / 0;
+		long timeNumber = 3;
 		try {
 			TimeUnit.SECONDS.sleep(timeNumber);
 		} catch (Exception e) {
