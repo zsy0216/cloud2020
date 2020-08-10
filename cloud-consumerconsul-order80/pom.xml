@@ -18,7 +18,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.atguigu.springcloud</groupId>
+            <groupId>org.example</groupId>
             <artifactId>cloud-api-commons</artifactId>
             <version>${project.version}</version>
         </dependency>
