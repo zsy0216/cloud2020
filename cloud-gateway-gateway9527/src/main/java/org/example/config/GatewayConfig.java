@@ -24,10 +24,10 @@ public class GatewayConfig {
 				r -> r.path("/guoji")
 				.uri("http://news.baidu.com/guoji"))
 				.build();
-		routes.route("path_rote_tassel3",
+		/*routes.route("path_rote_tassel3",
 				r -> r.path("/**")
 				.uri("http://news.baidu.com/**"))
-				.build();
+				.build();*/
 		return routes.build();
 	}
 
