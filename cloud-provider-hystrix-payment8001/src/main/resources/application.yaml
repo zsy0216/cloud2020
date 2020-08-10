@@ -16,3 +16,10 @@ eureka:
       defaultZone: http://eureka7001.com:7001/eureka/
 #  server:
 #    enable-self-preservation: false
+
+# Hystrix Dashboard 监控
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: *
