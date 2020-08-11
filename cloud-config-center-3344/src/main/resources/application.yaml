@@ -12,7 +12,7 @@ spring:
           search-paths:
             - spring-cloud   # 搜索目录
           username: 1429118997@qq.com
-          password: ******
+          password: 440883lizhihai
       label: master  # 读取分支
   rabbitmq:     # RabbitMQ配置
     host: localhost

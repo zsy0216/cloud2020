@@ -10,6 +10,11 @@ spring:
       name: config   # 配置文件名称
       profile: dev   # 读取后缀名称 综合: /master/config-dev.yml
       uri: http://localhost:3344 # 配置中心地址
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 # 服务注册到 Eureka 注册中心
 eureka:
@@ -22,4 +27,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: "*"  # "refresh"
