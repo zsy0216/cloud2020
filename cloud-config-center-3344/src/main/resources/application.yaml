@@ -8,14 +8,26 @@ spring:
     config:
       server:
         git:
-          uri: https://gitee.com/fosulzh/config.git  # 填写你自己的github路径
+          uri: https://gitee.com/fosulzh/config.git  # 填写你自己的git仓库地址
           search-paths:
-            - spring-cloud
+            - spring-cloud   # 搜索目录
           username: 1429118997@qq.com
-          password: 440883lizhihai
-      label: master
+          password: ******
+      label: master  # 读取分支
+  rabbitmq:     # RabbitMQ配置
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
 
 eureka:
   client:
     service-url:
       defaultZone:  http://localhost:7001/eureka
+
+# rabbitmq相关配置, 暴露bus刷新配置的端点
+management:
+  endpoints:  # 暴露bus刷新配置的端点
+    web:
+      exposure:
+        include: 'bus-refresh'
