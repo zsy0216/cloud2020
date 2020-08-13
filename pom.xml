@@ -39,6 +39,7 @@
         <module>cloud-alibaba-consumer-nacos-order84</module>
         <module>untitled</module>
         <module>seata-order-service2001</module>
+        <module>seata-order-service2002</module>
     </modules>
     <packaging>pom</packaging>
 
