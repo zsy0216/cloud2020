@@ -12,3 +12,8 @@ spring:
       transport:
         dashboard: localhost:8080
         port: 8719
+
+# 开启 sentinel 对 feign 的支持
+feign:
+  sentinel:
+    enabled: true
