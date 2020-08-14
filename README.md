@@ -5,6 +5,8 @@
 
 - [我的 SpringCloud 博客](https://zsy0216.github.io/docs/#/springcloud/)
 
+- [各软件和脑图查看目录 `source-files` ](https://github.com/zsy0216/cloud2020/tree/master/source-files)
+
 #### Eureka 集群修改 host 文件
 找到C:\Windows\System32\drivers\etc路径下的hosts文件,添加
 ```shell script
